@@ -15,4 +15,8 @@ public class TestService {
         return testRepository.findAll();
     }
 
+    public Member saveMember(Member member) {
+        return testRepository.save(member);
+    }
+
 }
