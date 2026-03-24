@@ -18,6 +18,8 @@ public class Member {
     private Long id;
     @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "email", nullable = false)
-    private String email;
+
+    public Member(String name) {
+        this.name = name;
+    }
 }
