@@ -1,5 +1,6 @@
-package com.bhl.springdeveloper.dao;
+package com.bhl.springdeveloper.dto;
 
+import com.bhl.springdeveloper.dao.Article;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
