@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>블로그 글 목록</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="mb-5 text-center p-5 bg-light">
+    <h1 class="mb-3">My Blog</h1>
+    <h4 class="mb-3">블로그에 오신 것을 환영합니다.</h4>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 mb-4" th:each="item : ${articles}">
+            <div class="card">
+                <div class="card-header" th:text="${item.id}">ID 영역</div>
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${item.title}">제목 영역</h5>
+                    <p class="card-text" th:text="${item.content}">내용 영역</p>
+                    <a href="#" class="btn btn-primary">보러가기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

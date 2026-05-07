@@ -30,7 +30,6 @@ public class ExampleController {
 
         Person p = new Person(1L, "홍길동", 18, List.of("운동", "독서", "영화", "음악", "등산"));
         model.addAttribute("person", p);
-
         return "example"; // src/main/resources/templates/example.html
     }
 }
