@@ -1,4 +1,4 @@
-INSERT INTO article (title, content) VALUES('title 1', 'content 1')
-INSERT INTO article (title, content) VALUES('title 2', 'content 2')
-INSERT INTO article (title, content) VALUES('title 3', 'content 3')
-INSERT INTO article (title, content) VALUES('title 4', 'content 4')
+INSERT INTO article (title, content, created_at, updated_at) VALUES('title 1', 'content 1', now(), now());
+INSERT INTO article (title, content, created_at, updated_at) VALUES('title 2', 'content 2', now(), now());
+INSERT INTO article (title, content, created_at, updated_at) VALUES('title 3', 'content 3', now(), now());
+INSERT INTO article (title, content, created_at, updated_at) VALUES('title 4', 'content 4', now(), now());
