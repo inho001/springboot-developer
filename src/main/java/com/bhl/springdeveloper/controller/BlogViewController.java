@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -33,6 +34,18 @@ public class BlogViewController {
         Article article = blogService.findById(id);
         model.addAttribute("article", new ArticleViewResponse(article));
         return "article";
+    }
+
+    @GetMapping("/new-article") // http://localhost:8080/new-article?id=1
+    public String newArticle(@RequestParam(required = false) Long id, Model model) {
+        if(id != null) { // 수정 폼 페이지 요청
+            Article article = blogService.findById(id);
+            model.addAttribute("article", new ArticleViewResponse(article));
+        } else { // 등록 폼 페이지 요청
+            model.addAttribute("article", new ArticleViewResponse());
+        }
+
+        return "newArticle";
     }
 
 }

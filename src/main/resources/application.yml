@@ -13,7 +13,4 @@ spring:
         format_sql: true # sql을 줄바꿈해서 보기 좋게 출력
     # 테이블 생성 후에 data.sql 실행
     defer-datasource-initialization: true
-  sql:
-    init:
-      mode: always
 
