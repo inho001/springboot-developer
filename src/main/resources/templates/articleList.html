@@ -13,6 +13,9 @@
 </div>
 
 <div class="container">
+    <button type="button" class="btn btn-secondary btn-small mb-3"
+            onclick="location.href='/new-article'"
+            id="create-btn">글 등록</button>
     <div class="row">
         <div class="col-12 mb-4" th:each="item : ${articles}">
             <div class="card">
