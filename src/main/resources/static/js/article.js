@@ -25,7 +25,7 @@ if (createButton) {
     // 서버에 블로그 글 등록 요청 보내기
     // 등록할 글 제목, 내용을 요청 바디에 포함시켜야지
     // 등록이 완료되면 '등록 완료되었습니다' 라는 팝업창 띄우고, 그 다음에 글 목록보기 요청을 서버에 보내기
-        fetch('/articles', {
+        fetch('api/articles', {
             method: 'POST',
             headers: {
                 'Content-Type': "application/json"
@@ -34,6 +34,21 @@ if (createButton) {
                 title: document.getElementById('title').value,
                 content: document.getElementById('content').value
             })
+        }).then(() => {
+            alert('등록 완료되었습니다');
+            location.replace('/articles')
+        });
+    })
+}
+const deletebtn = document.getElementById('delete-btn');
+if (deletebtn) {
+    deletebtn.addEventListener('click', event => {
+        // 서버에 블로그 글 등록 요청 보내기
+        // 등록할 글 제목, 내용을 요청 바디에 포함시켜야지
+        // 등록이 완료되면 '등록 완료되었습니다' 라는 팝업창 띄우고, 그 다음에 글 목록보기 요청을 서버에 보내기
+        const id = location.pathname.split('/').pop();
+        fetch(`api/articles/${id}`, {
+            method: 'DELETE'
         }).then(() => {
             alert('등록 완료되었습니다');
             location.replace('/articles')
