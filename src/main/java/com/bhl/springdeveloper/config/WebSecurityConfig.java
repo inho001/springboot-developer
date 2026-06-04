@@ -3,10 +3,13 @@ package com.bhl.springdeveloper.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 
@@ -36,6 +39,30 @@ public class WebSecurityConfig {
             5. 로그아웃이 설공했을 떄 어느 페이지로 갈지 URL 설정 (로그인 페이지 폼 페이지)
             6. 로그아웃 했을 때 세션 정볼르 무효화 할지 여부를 설정 (true)
          */
-        return httpSecurity.authorizeHttpRequests();
+        return httpSecurity.authorizeHttpRequests(
+                auth -> auth.requestMatchers(
+                        PathPatternRequestMatcher.withDefaults().matcher("/login"),
+                        PathPatternRequestMatcher.withDefaults().matcher("/signup"),
+                        PathPatternRequestMatcher.withDefaults().matcher("/user")).permitAll()
+                        .anyRequest().authenticated())
+                .formLogin(formLogin -> formLogin.loginPage("/login")
+                        .defaultSuccessUrl("/articles")
+                )
+                .logout(logout -> logout.logoutSuccessUrl("/login")
+                        .invalidateHttpSession(true))
+                .csrf(AbstractHttpConfigurer::disable)
+                .build();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(HttpSecurity http,
+                                                       BCryptPasswordEncoder bCrypt,
+                                                       UserDetailsService userService) throws Exception{
+        /*
+        *   1. Spring Security가 사용자 인증을 위해서 사용할 AuthenticationProvider 생성 및 설정
+        *   2. AuthenticationProvider가 DB에서 사용자 정보를 읽어오기 위해 사용할 서비스 설정
+        *   3. AuthenticationProvider가 사용자 pw를 암호화하기 위해 사용할 encoder 설정
+        *   4. AuthenticationManager에게 위에서 생성 및 설정한 AuthenticationProvider 전달
+        * */
     }
 }
