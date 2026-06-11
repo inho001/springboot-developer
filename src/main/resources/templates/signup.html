@@ -22,6 +22,10 @@
         <div class = "mb-2">
           <form th:action="@{/user}" method="POST">
             <div class="mb-3">
+              <label class="form-label text-white">Nickname</label>
+              <input type="text" class="form-control" name="nickname">
+            </div>
+            <div class="mb-3">
               <label class="form-label text-white">Email address</label>
               <input type="email" class="form-control" name="email">
             </div>

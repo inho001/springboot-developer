@@ -27,6 +27,9 @@ public class User implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "nickname", nullable = false, unique = true)
+    private String nickname;
+
     @Override
     public String getUsername() {
         return email;
